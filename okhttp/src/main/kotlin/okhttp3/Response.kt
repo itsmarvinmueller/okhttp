@@ -121,6 +121,8 @@ class Response internal constructor(
   @get:JvmName("receivedResponseAtMillis") val receivedResponseAtMillis: Long,
   @get:JvmName("exchange") internal val exchange: Exchange?,
   private var trailersFn: (() -> Headers),
+  @get:JvmName("deprecated") val deprecated: Boolean?,
+  @get:JvmName("deprecatedParameter") val deprecatedParameter: Set<String>?,
 ) : Closeable {
   internal var lazyCacheControl: CacheControl? = null
 
@@ -328,6 +330,8 @@ class Response internal constructor(
     internal var receivedResponseAtMillis: Long = 0
     internal var exchange: Exchange? = null
     internal var trailersFn: (() -> Headers) = { Headers.headersOf() }
+    internal var deprecated: Boolean? = null
+    internal var deprecatedParameter: Set<String>? = null
 
     constructor() {
       headers = Headers.Builder()
@@ -348,6 +352,8 @@ class Response internal constructor(
       this.receivedResponseAtMillis = response.receivedResponseAtMillis
       this.exchange = response.exchange
       this.trailersFn = response.trailersFn
+      this.deprecated = response.deprecated
+      this.deprecatedParameter = response.deprecatedParameter
     }
 
     open fun request(request: Request) = commonRequest(request)
@@ -398,6 +404,16 @@ class Response internal constructor(
     @ExperimentalOkHttpApi
     open fun trailers(trailersFn: (() -> Headers)): Builder = commonTrailers(trailersFn)
 
+    open fun deprecated(deprecated: Boolean) =
+      apply {
+        this.deprecated = deprecated
+      }
+
+    open fun deprecatedParameter(deprecatedParameter: Set<String>) =
+      apply {
+        this.deprecatedParameter = deprecatedParameter
+      }
+
     open fun sentRequestAtMillis(sentRequestAtMillis: Long) =
       apply {
         this.sentRequestAtMillis = sentRequestAtMillis
@@ -430,6 +446,8 @@ class Response internal constructor(
         receivedResponseAtMillis,
         exchange,
         trailersFn,
+        deprecated,
+        deprecatedParameter,
       )
     }
   }

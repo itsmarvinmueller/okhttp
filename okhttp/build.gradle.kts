@@ -97,6 +97,7 @@ tasks.getByName("test") {
 dependencies {
   api(libs.squareup.okio)
   api(libs.kotlin.stdlib)
+  api(libs.snakeyaml)
 
   // These compileOnly dependencies must also be listed in the OSGi configuration above.
   compileOnly(libs.robolectric.android)

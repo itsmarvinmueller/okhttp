@@ -1157,6 +1157,8 @@ public final class okhttp3/Response : java/io/Closeable {
 	public final fun challenges ()Ljava/util/List;
 	public fun close ()V
 	public final fun code ()I
+	public final fun deprecated ()Ljava/lang/Boolean;
+	public final fun deprecatedParameter ()Ljava/util/Set;
 	public final fun handshake ()Lokhttp3/Handshake;
 	public final fun header (Ljava/lang/String;)Ljava/lang/String;
 	public final fun header (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -1185,6 +1187,8 @@ public class okhttp3/Response$Builder {
 	public fun build ()Lokhttp3/Response;
 	public fun cacheResponse (Lokhttp3/Response;)Lokhttp3/Response$Builder;
 	public fun code (I)Lokhttp3/Response$Builder;
+	public fun deprecated (Z)Lokhttp3/Response$Builder;
+	public fun deprecatedParameter (Ljava/util/Set;)Lokhttp3/Response$Builder;
 	public fun handshake (Lokhttp3/Handshake;)Lokhttp3/Response$Builder;
 	public fun header (Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Response$Builder;
 	public fun headers (Lokhttp3/Headers;)Lokhttp3/Response$Builder;
